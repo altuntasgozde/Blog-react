@@ -3,7 +3,7 @@ import { NavbarItem } from "./NavbarItem";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Entry from "./Entry";
 import "./App.css";
-import BlogPosts from "./BlogPosts";
+import { Card, CardText, CardTitle, Col, Container, Row } from "reactstrap";
 
 const App = () => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -21,14 +21,12 @@ const App = () => {
   };
 
   const GetText = (e) => {
-
-    
     setBlogPosts((oldPosts) => [
       ...oldPosts,
       {
         blogTitle: title,
         blogPost: textarea,
-      }
+      },
     ]);
 
     e.preventDefault();
@@ -43,7 +41,20 @@ const App = () => {
       <div className="App">
         <NavbarItem />
         <Route exact path="/">
-          <BlogPosts blogPosts={blogPosts} />
+          <Container>
+            <Row>
+              <Col md={{ size: 8, offset: 2 }}>
+                <div>
+                  {blogPosts.reverse().map((post, index) => (
+                    <Card className="mt-5" body key={index}>
+                      <CardTitle tag="h5">{post.blogTitle}</CardTitle>
+                      <CardText>{post.blogPost}</CardText>
+                    </Card>
+                  ))}
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </Route>
         <Route path="/entry">
           <Entry
