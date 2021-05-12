@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { NavbarItem } from "./NavbarItem";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Entry from "./Entry";
+import "./App.css";
+import BlogPosts from "./BlogPosts";
 
-function App() {
+const App = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
+
+  const [title, setTitle] = useState("");
+
+  const [textarea, setTextarea] = useState("");
+
+  const TitleValue = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const TextareaValue = (e) => {
+    setTextarea(e.target.value);
+  };
+
+  const GetText = (e) => {
+
+    
+    setBlogPosts((oldPosts) => [
+      ...oldPosts,
+      {
+        blogTitle: title,
+        blogPost: textarea,
+      }
+    ]);
+
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    console.log(blogPosts);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <NavbarItem />
+        <Route exact path="/">
+          <BlogPosts blogPosts={blogPosts} />
+        </Route>
+        <Route path="/entry">
+          <Entry
+            TitleValue={TitleValue}
+            TextareaValue={TextareaValue}
+            GetText={GetText}
+          />
+        </Route>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
