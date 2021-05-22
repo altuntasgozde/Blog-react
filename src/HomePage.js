@@ -8,7 +8,6 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import Footer from "./Footer";
 
 function HomePage({blogPosts}) {
 
