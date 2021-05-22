@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NavbarItem } from "./NavbarItem";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Entry from "./Entry";
 import "./App.css";
-import { Card, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import { PostDetail } from "./PostDetail";
+import HomePage from "./HomePage";
 
 const App = () => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -20,12 +21,27 @@ const App = () => {
     setTextarea(e.target.value);
   };
 
+  let postDate = new Date();
+
+  let newdate = new Intl.DateTimeFormat("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(postDate);
+
   const GetText = (e) => {
+    const blogId = Math.floor(Math.random() * 10000) + 1;
+
     setBlogPosts((oldPosts) => [
       ...oldPosts,
       {
         blogTitle: title,
         blogPost: textarea,
+        id: blogId,
+        date: newdate,
       },
     ]);
 
@@ -34,35 +50,25 @@ const App = () => {
 
   useEffect(() => {
     console.log(blogPosts);
-  });
+    });
 
   return (
     <Router>
       <div className="App">
         <NavbarItem />
-        <Route exact path="/">
-          <Container>
-            <Row>
-              <Col md={{ size: 8, offset: 2 }}>
-                <div>
-                  {blogPosts.reverse().map((post, index) => (
-                    <Card className="mt-5" body key={index}>
-                      <CardTitle tag="h5">{post.blogTitle}</CardTitle>
-                      <CardText>{post.blogPost}</CardText>
-                    </Card>
-                  ))}
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </Route>
-        <Route path="/entry">
-          <Entry
-            TitleValue={TitleValue}
-            TextareaValue={TextareaValue}
-            GetText={GetText}
-          />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <HomePage blogPosts={blogPosts} />
+          </Route>
+          <Route path="/post/:id" children={<PostDetail blogPosts={blogPosts}/>} />
+          <Route exact path="/entry">
+            <Entry
+              TitleValue={TitleValue}
+              TextareaValue={TextareaValue}
+              GetText={GetText}
+            />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

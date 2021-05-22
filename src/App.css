@@ -2,26 +2,43 @@
   text-align: center;
 }
 
-  /* Entry */
+.readMore {
+  color: white;
+  cursor: pointer;
+  font-size:13px;
+  margin-left:5px;
+  background-color: black;
+  padding:5px;
+}
 
-  .Entry {
-    width:100%;
-    display:flex;
-    justify-content:center;
-  }
+.readMore:hover {
+  color: white;
+}
+/* Entry */
 
-  form {
-    display:flex;
-    flex-direction: column;
-    margin-top:40px;
-  }
+.Entry {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-  .textarea {
-    height:200px;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
 
-  Label {
-    margin-top:10px;
-    font-weight: bold;
-  }
+.textarea {
+  height: 200px;
+}
 
+Label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Post Detail */
+
+.detailTitle {
+  font-size: 55px;
+}
