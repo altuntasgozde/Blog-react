@@ -7,7 +7,7 @@ import { PostDetail } from "./PostDetail";
 import HomePage from "./HomePage";
 
 const App = () => {
-  const [blogPosts, setBlogPosts] = useState([]);
+  const [blogPosts, setBlogPosts] = useState(JSON.parse(localStorage.getItem("posts")) || []);
 
   const [title, setTitle] = useState("");
 
@@ -49,8 +49,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    localStorage.setItem("posts", JSON.stringify(blogPosts));
     console.log(blogPosts);
-    });
+  }, [blogPosts]);
+
 
   return (
     <Router>

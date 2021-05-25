@@ -32,7 +32,7 @@ function HomePage({blogPosts}) {
                     </small>
                   </CardText>
                 </Card>
-              ))}
+              )).reverse()}
             </div>
           </Col>
         </Row>
