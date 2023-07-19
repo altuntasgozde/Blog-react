@@ -10,7 +10,7 @@ import {
   Row,
 } from "reactstrap";
 
-function Entry({ TitleValue, TextareaValue, GetText }) {
+function Entry({ TitleValue, TextareaValue, GetText, postStatus }) {
   return (
     <div className="Entry">
       <Container>
@@ -25,9 +25,10 @@ function Entry({ TitleValue, TextareaValue, GetText }) {
                 <Label>Post</Label>
                 <Input type="textarea"  className=" textarea mt-2" onChange={TextareaValue} />
               </FormGroup>             
-              <Button color="primary" className="mt-3" onClick={GetText}>
+              <Button className="mt-3 addBtn" onClick={GetText}>
                 Add
               </Button>
+              {postStatus ? <p className="mt-5 addText">Blog added</p> : null}
             </Form>
           </Col>
         </Row>

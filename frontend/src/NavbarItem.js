@@ -19,24 +19,25 @@ export const NavbarItem = () => {
 
   return (
     <div>
-      <Navbar color="primary" light expand="md">
+      <Navbar light expand="md">
         <Container>
-          <NavbarBrand className="text-white" href="/">BLOG</NavbarBrand>
+          <Link to="/" style={{ textDecoration: "none" }} >
+            <NavLink>
+              <NavbarBrand className="brand">BLOG</NavbarBrand>
+            </NavLink>
+          </Link>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
               <NavItem>
-              <Link to="/" style={{textDecoration: 'none'}}>
-                <NavLink className="text-white">Home</NavLink>
+                <Link to="/" style={{ textDecoration: "none" }}>
+                  <NavLink>Home</NavLink>
                 </Link>
               </NavItem>
               <NavItem>
-              <Link to="/entry" style={{textDecoration: 'none'}}>
-                <NavLink className="text-white">
-                   + New Entry
-                </NavLink>
+                <Link to="/entry" style={{ textDecoration: "none" }}>
+                  <NavLink className="newEntry">+ New Entry</NavLink>
                 </Link>
-
               </NavItem>
             </Nav>
           </Collapse>

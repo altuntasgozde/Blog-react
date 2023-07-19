@@ -25,13 +25,13 @@ export const PostDetail = ({ blogPosts }) => {
               .filter((post) => post.id == id)
               .map((filteredpost, index) => (
                 <Card className="mt-5 mb-5" body key={index}>
-                  <CardTitle className="detailTitle" tag="h5">{filteredpost.blogTitle}</CardTitle>
-                  <CardText>
+                  <CardTitle className="detailTitle" tag="h5">{filteredpost.attributes.title}</CardTitle>
+                  {/* <CardText>
                     <small className="text-muted">
                     {filteredpost.date}
                     </small>
-                  </CardText>
-                  <CardText>{filteredpost.blogPost}</CardText>
+                  </CardText> */}
+                  <CardText>{filteredpost.attributes.post}</CardText>
                 </Card>
               ))}
           </Col>

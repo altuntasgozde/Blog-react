@@ -2,13 +2,24 @@
   text-align: center;
 }
 
+.brand {
+  color: gray !important;
+  text-decoration: none !important;
+}
+
+.newEntry {
+  background-color: #FF8C00;
+  color:white !important;
+  border-radius: 30px;
+  padding: 7px 10px !important;
+}
+
 .readMore {
   color: white;
   cursor: pointer;
-  font-size:13px;
-  margin-left:5px;
+  font-size: 13px;
+  margin-left: 5px;
   background-color: black;
-  padding:5px;
 }
 
 .readMore:hover {
@@ -16,7 +27,7 @@
 }
 
 .pagination {
-  width:100%;
+  width: 100%;
   justify-content: center;
   margin-top: 20px;
 }
@@ -44,6 +55,15 @@ Label {
   font-weight: bold;
 }
 
+.addBtn {
+  background-color: #FF8C00 !important;
+  border: 1px solid #FF8C00 !important;
+}
+
+.addText {
+  background-color: #CEE4A7;
+  padding: 5px;
+}
 /* Post Detail */
 
 .detailTitle {

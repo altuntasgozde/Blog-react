@@ -9,6 +9,7 @@ function HomePage({ blogPosts }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -21,24 +22,26 @@ function HomePage({ blogPosts }) {
         <Row>
           <Col md={{ size: 8, offset: 2 }}>
             <div>
-              {currentPosts.map((post, index) => (
-                <Card className="mt-5" body key={index}>
-                  <CardTitle tag="h5">{post.blogTitle}</CardTitle>
+              {currentPosts.map((item, index)=> {
+                return (
+                  <Card className="mt-5" body key={index}>
+                  <CardTitle tag="h5">{item.attributes.title}</CardTitle>
                   <CardText>
-                    {post.blogPost.slice(0, 360).concat("...")}
+                    {item.attributes.post.slice(0, 360).concat("...")}
                     <Link
-                      style={{ textDecoration: "none" }}
-                      to={"/post/" + post.id}
+                      style={{ textDecoration: "none", borderRadius:"15px", padding:"7px" }}
+                      to={"/post/" + item.id}
                       className="readMore"
                     >
                       Read more
-                    </Link>
-                  </CardText>
+                    </Link> 
+                  </CardText> 
                   <CardText>
-                    <small className="text-muted">{post.date}</small>
+                    {/* <small className="text-muted">{post.date}</small> */}
                   </CardText>
                 </Card>
-              ))}
+                )
+              })}
             </div>
           </Col>
         </Row>
